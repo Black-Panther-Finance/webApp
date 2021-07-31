@@ -3,58 +3,21 @@
 
 
 //------------------Global Variables-----------------//
-const userName = document.getElementById("");
-const passWord = document.getElementById("");
-const userEmail = document.getElementById("");
-const form = document.querySelector("form");
+
+const firstName = document.getElementById("firstName").value;
+const lastName = document.getElementById("lastName").value;
+
+document.getElementById("login").addEventListener("click", handleClick);
+function handleClick() {
+  location.href("")
+}
+
 
 
 
 //---------------Constructor Functions------------------//
 
 
-function checkInputs() {
-  if (userName.value === "") {
-    showError(userName, "Valid user name is required")
-  } else {
-    showSuccess(userName);
-  }
-  if (passWord.value.trim() === "") {
-    showError(passWord, "Valid password is required")
-  } else {
-    showSuccess(passWord);
-  }
-  if (userEmail.value.trim() === "") {
-    showError(userEmail, "Valid email is required")
-  } else {
-    showSuccess(userEmail);
-  }
-
-}
-document.querySelector("button")
-  .addEventListener('submit', (e) => {
-    e.preventDefault()
-
-    checkInputs()
-  });
-
-function showSuccess(input) {
-  let parent = input.parentElement;
-  let messageElem = parent.querySelector("");
-  messageElem.style.visibility = "hidden";
-  parent.classList.remove("error");
-  parent.classList.add("success");
-}
-function showSuccess(input, message) {
-  let parent = input.parentElement;
-  let messageElem = parent.querySelector("");
-  messageElem.style.visibility = "hidden";
-  messageElem.innerText = message;
-  parent.classList.add("error");
-  parent.classList.remove("success");
-}
-
-//----------------Constructor Related Stuffs---------//
 
 
 
