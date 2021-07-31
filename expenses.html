@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="reset.css">
+  <link rel="stylesheet" href="style.css">
+  <title>Savor Expenses</title>
+</head>
+<body>
+  <header>
+    <div id="logo">
+      <h1>Savor</h1>
+      <img src="img/savor.png">
+    </div>
+    <nav>
+      <a id="Home" href="index.html"></a>
+      <a id="Desires" href="goals.html"></a>
+      <a id="About Us" href="aboutus.html"></a>
+    </nav>
+  </header>
+  <main>
+    <section id="expenses">
+      <h2>Expenses</h2>
+      <form>
+        <input type="text" placeholder="Frivolous Expense eg. coffee, alcohol" value="">
+        <input type="text" placeholder="$" value="">
+        <span id="per">/</span>
+        <select>
+          <option id="day">day</option>
+          <option id="week">week</option>
+          <option id="month">month</option>
+          <option id="year">year</option>
+        </select>
+        <button id="addExpense">+</button>
+      </form>
+      <ul id="expenseList">
+
+      </ul>
+    </section>
+    <section id="desire">
+      <h2>What is it you desire?</h2>
+      <form>
+        <input type="text" placeholder="Desire">
+        <input type="text" placeholder="$">
+        <input type="date" placeholder="date">
+        <label for="desireImg">Upload image for the object of your desire</label>
+        <input type="file" name="desireImg" accept="img/*">
+        <button id="addDesire">+</button>
+      </form>
+      <ul id="desireList">
+
+      </ul>
+    </section>
+  </main>
+  <footer>
+    
+  </footer>
+</body>
+</html>

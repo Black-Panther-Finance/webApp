@@ -1,0 +1,148 @@
+@font-face {
+  src: url(fonts/MoonTime-Regular.ttf);
+  font-family: moon;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  /* border: 1px solid deeppink; */
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
+}
+
+header, footer {
+  height: 15%;
+  width: 100%;
+  border: 1px solid deeppink;
+  background-color: #fc5755;
+  display: flex;
+}
+
+#logo {
+  position: relative;
+  height: 100%;
+  width: 300px;
+  font-family: moon;
+  font-size: 10em;
+  display: flex;
+  color: blanchedalmond;
+  text-shadow: 0px 0px 10px blanchedalmond;
+  animation: glow 1s linear infinite alternate;
+  margin: 10px;
+}
+
+@keyframes glow {
+  0% {
+    text-shadow: 0 0 1px blanchedalmond;
+  }
+  100% {
+    text-shadow: 0 0 15px blanchedalmond;
+  }
+}
+
+#logo h1 {
+  z-index: 1;
+  margin-left: 50px;
+}
+
+#logo img {
+  height: 150px;
+  width: 150px;
+  position: absolute;
+  left: 25px;
+  top: 0px;
+}
+
+main {
+  height: 70%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+section {
+  height: 400px;
+  width: 300px;
+  /* border: 1px solid orangered; */
+  border-radius: 15px;
+  box-shadow: 0 0 5px black;
+  padding: 25px;
+  padding-bottom: 0;
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+section:hover {
+  transform: scale(1.05);
+  transition: all 0.2s ease-in-out;
+  box-shadow: 0 5px 10px black;
+}
+
+section h2 {
+  font-family: moon;
+  width: 100%;
+  font-size: 1.75em;
+  font-weight: bolder;
+}
+
+form {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  height: 40%;
+}
+
+#login {
+  background-color: transparent;
+  border-radius: 50%;
+  position: absolute;
+  bottom: -60px;
+  height: 50px;
+  width: 50px;
+  border-top: 3px solid #ffd84c;
+  border-left: 3px solid #ffd84c;
+  border-right: 3px solid #d57e08;
+  border-bottom: 3px solid #d57e08;
+  font-weight: bolder;
+}
+
+form::before {
+  content: '';
+  margin: 35.5px 35.5px;
+  position: absolute;
+  width: 70px;
+  height: 70px;
+  background: #f0a608;
+  bottom: -105px;
+  border-radius: 50%;
+  border-bottom: 5px solid #ffd84c;
+  border-right: 5px solid #ffd84c;
+  border-left: 5px solid #d57e08;
+  border-top: 5px solid #d57e08;
+}
+
+form::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  background-color: #ffbd0b;
+  z-index: -1;
+}
+
+section #fineprint {
+  font-size: 0.5em;
+  margin-top: 50px;
+}
