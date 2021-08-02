@@ -21,6 +21,7 @@ header, footer {
   border: 1px solid deeppink;
   background-color: #fc5755;
   display: flex;
+  box-shadow: 0 0 10px black;
 }
 
 #logo {
@@ -65,19 +66,19 @@ main {
   align-items: center;
 }
 
+/* all the cards are sections */
 section {
+  position: relative;
   height: 400px;
   width: 300px;
-  /* border: 1px solid orangered; */
   border-radius: 15px;
   box-shadow: 0 0 5px black;
   padding: 25px;
-  padding-bottom: 0;
   transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: space-between;
 }
 
 section:hover {
@@ -91,58 +92,139 @@ section h2 {
   width: 100%;
   font-size: 1.75em;
   font-weight: bolder;
+  text-align: center;
 }
 
 form {
-  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  height: 40%;
+  height: 33%;
 }
 
-#login {
-  background-color: transparent;
-  border-radius: 50%;
-  position: absolute;
-  bottom: -60px;
-  height: 50px;
-  width: 50px;
-  border-top: 3px solid #ffd84c;
-  border-left: 3px solid #ffd84c;
-  border-right: 3px solid #d57e08;
-  border-bottom: 3px solid #d57e08;
-  font-weight: bolder;
-}
-
-form::before {
-  content: '';
-  margin: 35.5px 35.5px;
-  position: absolute;
-  width: 70px;
-  height: 70px;
-  background: #f0a608;
-  bottom: -105px;
-  border-radius: 50%;
-  border-bottom: 5px solid #ffd84c;
-  border-right: 5px solid #ffd84c;
-  border-left: 5px solid #d57e08;
-  border-top: 5px solid #d57e08;
-}
-
-form::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  height: 50px;
-  width: 50px;
-  border-radius: 50%;
+/* gold coin buttons */
+.coin {
   background-color: #ffbd0b;
+  border-radius: 50%;
+  position: absolute;
+  bottom: 10%;
+  height: 70px;
+  width: 70px;
+  border-top: 4px solid #ffd84c;
+  border-left: 4px solid #ffd84c;
+  border-right: 4px solid #d57e08;
+  border-bottom: 4px solid #d57e08;
+  font-weight: bolder;
+  font-size: 2em;
+  color: #ffbd0b;
+  z-index: 1;
+  text-shadow: 1px 2px 0 #cb7407;
+  transition: transform 0.2s ease-in-out;
+}
+
+.coin::before {
+  content: '';
+  position: absolute;
+  width: 70%;
+  height: 70%;
+  margin: 15%;
+  top: 0;
+  left: 0;
+  background: #f0a608;
+  border-radius: 50%;
+  border-bottom: 4px solid #ffd84c;
+  border-right: 4px solid #ffd84c;
+  border-left: 4px solid #d57e08;
+  border-top: 4px solid #d57e08;
   z-index: -1;
 }
+
+/* #us is the about us page body */
+#us .coin {
+  font-family: moon;
+}
+
+.coin:hover {
+  transform: scale(1.1);
+  transition: all 0.2s ease-in-out;
+  animation: soShiny 0.5s ease-in-out infinite alternate;
+}
+
+@keyframes soShiny {
+  0% {
+    box-shadow: 0 0 15px #ffd84c;
+  }
+  100% {
+    box-shadow: 0 0 15px 10px #ffd84c;
+  }
+}
+
+.coin:active {
+  animation: coinClick 0.5s ease;
+}
+
+@keyframes coinClick {
+  0% {
+    transform: scale(0.8);
+  }
+  25% {
+    transform: scale(1.075);
+  }
+  50% {
+    transform: scale(0.9);
+  }
+  75% {
+    transform: scale(1.025);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+#us section {
+  justify-content: flex-start;
+  padding: 1% 2% 10% 2%;
+  /* width: 23%;
+  height: 50%; */
+}
+
+#us h2 {
+  font-size: 3em;
+}
+
+#us section img {
+  height: 66%;
+  width: 100%;
+  border: 1px solid black;
+  margin-bottom: 10px;
+  border-radius: 5px 30px;
+  overflow: hidden;
+}
+
+/* .coin::after {
+  content: '';
+  position: absolute;
+  height: 50px;
+  width: 50px;
+  margin: 7px;
+  top: 0;
+  left: 20px;
+  border-radius: 50%;
+  background-color: #ffbd0b;
+  z-index: 2;
+} */
 
 section #fineprint {
   font-size: 0.5em;
   margin-top: 50px;
+}
+
+footer {
+  align-items: flex-end;
+  justify-content: flex-end;
+}
+
+footer h4 {
+  margin: 10px;
 }
