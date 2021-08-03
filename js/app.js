@@ -153,7 +153,7 @@ function handleSubmit1(e) {
 
 
   function handleSubmit2(e) {
-    // e.preventDefault();
+    e.preventDefault();
     let expenses = e.target.expenses.value;
     let cost = e.target.cost.value;
     console.log(expenses);
