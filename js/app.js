@@ -62,6 +62,7 @@ function _nameHandler(firstName, lastName) {
 
   function _addNewExpense(expenses,cost) {
     let newExpense = new UserData(expenses,cost); 
+    console.log(newExpense);
       UserData.allData.push(newExpense);
       newExpense.renderExpense();
   }
