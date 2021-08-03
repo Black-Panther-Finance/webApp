@@ -304,3 +304,8 @@ footer {
 footer h4 {
   margin: 10px;
 }
+
+#sectionName {
+  color: black;
+  position: absolute;
+}
