@@ -141,6 +141,36 @@ form {
   transition: all 0.2s ease-in-out
 }
 
+#expensesPage section {
+  width: 600px;
+}
+
+#expensesPage .coin {
+  right: -60%;
+  bottom: 55%;
+}
+
+#expensesPage form {
+  position: absolute;
+  flex-flow: row wrap;
+  align-items: baseline;
+  width: 50%;
+  top: 20%;
+  left: 5%;
+}
+
+input {
+  height: 3em;
+}
+
+ul {
+  min-height: 150px;
+  min-width: 550px;
+  border: 1px solid deepskyblue;
+  overflow-y: scroll;
+  border-radius: 10px;
+}
+
 /* #us is the about us page body */
 #us .coin {
   font-family: moon;
@@ -161,7 +191,7 @@ form {
   }
 }
 
-/* .coin:active {
+/* .coin:focus {
   animation: coinClick 0.5s ease;
 }
 
@@ -237,6 +267,11 @@ form {
   background-color: white;
   transition: all 0.75s ease-in-out;
   animation: coinMove 1s linear forwards;
+  border-top: 2px solid #ffd84c;
+  border-left: 2px solid #ffd84c;
+  border-right: 2px solid #d57e08;
+  border-bottom: 2px solid #d57e08;
+  opacity: 0.75;
 }
 
 #us section:hover .coin:before {
@@ -246,6 +281,11 @@ form {
   transform: translateX(0%) translateY(0%);
   background-color: transparent;
   transition: all 0.75s ease-in-out;
+  border-bottom: 2px solid #ffd84c;
+  border-right: 2px solid #ffd84c;
+  border-left: 2px solid #d57e08;
+  border-top: 2px solid #d57e08;
+  opacity: 0.75;
 }
 
 #us section:hover p {
