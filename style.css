@@ -127,7 +127,6 @@ form {
   position: absolute;
   width: 70%;
   height: 70%;
-  /* margin: 15%; */
   top: 0;
   left: 0;
   transform: translateX(22%) translateY(22%);
@@ -139,6 +138,10 @@ form {
   border-top: 4px solid #d57e08;
   z-index: -1;
   transition: all 0.2s ease-in-out
+}
+
+#login {
+  transform: translateX(-50%);
 }
 
 #expensesPage section {
@@ -193,7 +196,7 @@ ul {
 
 /* .coin:focus {
   animation: coinClick 0.5s ease;
-}
+} */
 
 @keyframes coinClick {
   0% {
@@ -211,7 +214,7 @@ ul {
   100% {
     transform: scale(1);
   }
-} */
+}
 
 #us section {
   justify-content: flex-start;
@@ -231,6 +234,13 @@ ul {
   width: 100%;
   filter: drop-shadow(0px 0px 3px black);
   z-index: -1;
+  bottom: -10%;
+  transition: all 0.25s ease-in-out;
+}
+
+.background {
+  opacity: 0;
+  transition: all 0.25s ease-in-out;
 }
 
 #us p {
@@ -296,8 +306,25 @@ ul {
   transition: all 1.5s ease-in-out;
 }
 
-#brandon img {
-  top: 20%;
+#us section:hover img {
+  transform: translateY(-7%);
+  opacity: 1;
+  transition: all 0.5s ease-in-out;
+  /* animation: photoFade 0.5s linear forwards; */
+}
+
+/* @keyframes photoFade {
+  0% {
+    background: radial-gradient(transparent 0%, white 100%);
+  }
+  100% {
+    background: radial-gradient(transparent 100%, white 0%);
+  }
+} */
+
+#us section:hover h2 {
+  transform: scale(1.2);
+  transition: all 0.5s ease-in-out;
 }
 
 /* @keyframes coinMove {
