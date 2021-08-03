@@ -4,46 +4,74 @@
 
 //------------------Global Variables-----------------//
 
-let userNameElem = document.getElementById("form1");
-let expensesList = document.getElementById("form2");
+const userNameElem = document.getElementById("form1");
+const expensesList = document.getElementById("form2");
 const desireList = document.getElementById("form3");
 const secElem = document.getElementById('sectionName');
 let expUlElem = document.getElementById('expenseList');
 let desUlElem = document.getElementById('desire');
 
+// experimental ----------------------------------------
 
+function Username(first, last) {
+  this.first = first;
+  this.last = last;
+  Username.all.push(this);
+}
+
+function Expense(name, cost, per) {
+  this.name = name;
+  this.cost = cost;
+  this.per = per;
+  Expense.all.push(this);
+}
+
+function Desire(name, cost, date) {
+  this.name = name;
+  this.cost = cost;
+  this.date = date;
+  Desire.all.push(this);
+}
+
+Username.all = [];
+Expense.all = [];
+Desire.all = [];
 
 //---------------Constructor Functions------------------//
 
 // 1) make total for expenses!!!!
 // 2) edit expenses? - s
 
-function UserData(firstName = '', lastName = '', expenses, cost, desireObject, costOfDesire, timeOfFullFillment) {
-   this.firstName = firstName;
-   this.lastName = lastName;
-   this.expenses = expenses;
-   this.cost = cost;
-   this.desireObject = desireObject;
-   this.costOfDesire = costOfDesire;
-   this.timeOfFullFillment = timeOfFullFillment;
+// function UserData(firstName = '', lastName = '', expenses, cost, desireObject, costOfDesire, timeOfFullFillment) {
+//    this.firstName = firstName;
+//    this.lastName = lastName;
+//    this.expenses = expenses;
+//    this.cost = cost;
+//    this.desireObject = desireObject;
+//    this.costOfDesire = costOfDesire;
+//    this.timeOfFullFillment = timeOfFullFillment;
 
-}
+// }
 
-UserData.allData = []; 
+// UserData.allData = []; 
 
-UserData.prototype.renderName = function() {
+function renderName(name) {
   let h3Elem = document.createElement('h3')
-  h3Elem.textContent = `Hi ${this.firstName} ${this.lastName}`;
+  h3Elem.textContent = `Hi ${name.first} ${name.last}`;
   secElem.appendChild(h3Elem);
+  console.log('rendername');
 }
 
-
-UserData.prototype.renderExpense = function(){
+function renderExpense(){
+  expUlElem.innerHTML = '';
+  console.log("im rendering expenses");
+  for (let exp of Expense.all) {
     let liElem = document.createElement('li');
-    liElem.textContent = `${this.expenses} ${this.cost} per month`;
+    liElem.textContent = `${exp.name} ${exp.cost} per ${exp.per}`;
     expUlElem.appendChild(liElem);
-  
+  }
 }
+
 // UserData.prototype.renderDesire = function(){
 //   let liElem = document.createElement('li');
 //     liElem.textContent = `${this.desireObject} ${this.costOfDesire}`;
@@ -53,19 +81,19 @@ UserData.prototype.renderExpense = function(){
 
 //----------------Global Functions----------------//
 
-function _nameHandler(firstName, lastName) {
-  console.log(firstName, lastName);
-  let newName = new UserData(firstName,lastName); 
-  UserData.allData.push(newName);
-  // newName.renderName(); 
-}
+// function _nameHandler(firstName, lastName) {
+//   console.log(firstName, lastName);
+//   let newName = new UserData(firstName,lastName); 
+//   UserData.allData.push(newName);
+//   // newName.renderName(); 
+// }
 
-  function _addNewExpense(expenses,cost) {
-    let newExpense = new UserData(expenses,cost); 
-    console.log(newExpense);
-      UserData.allData.push(newExpense);
-      newExpense.renderExpense();
-  }
+// function _addNewExpense(expenses,cost) {
+//   let newExpense = new UserData(expenses,cost); 
+//   console.log(newExpense);
+//     UserData.allData.push(newExpense);
+//     newExpense.renderExpense();
+// }
   
 
   // function _desHandler(desireObject, costOfDesire) {
@@ -83,31 +111,33 @@ function _nameHandler(firstName, lastName) {
 if(secElem){getnameFromStorage(); }
 
 function getnameFromStorage() {
-  let nameFromStorage = localStorage.getItem('userDetails');
+  console.log("I'm getting name from storage");
+  let nameFromStorage = localStorage.getItem('username');
   if (nameFromStorage) {
-    let parsedName = JSON.parse(nameFromStorage);
-    console.log(parsedName);
-    for(let name of parsedName) {
-      let newName = new UserData(name.firstName, name.lastName );
-      UserData.allData.push(newName);
-      newName.renderName();
-    }
+    let name = JSON.parse(nameFromStorage);
+    console.log(name);
+    name = new Username(name.first, name.last);
+    console.log(Username.first);
+    renderName(name);
   }
 }
 
-if(expUlElem){getExpensesFromStorage(); }
+if(expUlElem){
+  getExpensesFromStorage();
+}
 
 function getExpensesFromStorage() {
- let expensesInStorage = localStorage.getItem('userDetails');
+  console.log("I'm getting expenses from storage");
+ let expensesInStorage = localStorage.getItem('expense');
  if(expensesInStorage){
    let parsedExpenses = JSON.parse(expensesInStorage);
    console.log(parsedExpenses);
+   console.log(Expense.all);
    for(let expenses of parsedExpenses) {
-    let newExpense = new UserData(expenses.expenses, expenses.cost);
-    UserData.allData.push(newExpense);
-    newExpense.renderExpense();
+    new Expense(expenses.name, expenses.cost, expenses.per);
     }
   }
+  renderExpense();
 }
 
 // if(desUlElem){getDesireFromStorage(); }
@@ -125,46 +155,55 @@ function getExpensesFromStorage() {
 //   }
 // }
 
-    function putUserDataInStorage(){
-    let stringArray = JSON.stringify(UserData.allData);
-    localStorage.setItem('userDetails',stringArray);
+function putUsernameInStorage(name){
+  console.log("I'm putting name in storage");
+  let stringArray = JSON.stringify(name);
+  localStorage.setItem('username',stringArray);
+}
 
-  }
+function putExpenseInStorage(){
+  console.log("I'm putting expense in storage");
+  let stringArray = JSON.stringify(Expense.all);
+  localStorage.setItem('expense',stringArray);
+}
+
+// function putUsernameInStorage(){
+//   let stringArray = JSON.stringify(Username);
+//   localStorage.setItem('username',stringArray);
+// }
 
 //  }
 
 //---------------Rendering Header/Body/Footer---------//
 
-console.log("i'm here");
+
 
 //--------------Event Listeners------------------//
 function handleSubmit1(e) {
-  // e.preventDefault();
-  let firstName = e.target.firstName.value;
-  let lastName = e.target.lastName.value;
-  console.log(firstName);
-  _nameHandler(firstName, lastName);
-  putUserDataInStorage();
+  e.preventDefault();
+  let name = new Username(e.target.firstName.value, e.target.lastName.value);
+  // Username.first = e.target.firstName.value;
+  // Username.last = e.target.lastName.value;
+  putUsernameInStorage(name);
+  window.location = 'expenses.html';
 }
 
-  if(userNameElem){
-    userNameElem.addEventListener('submit', handleSubmit1);
+if(userNameElem){
+  userNameElem.addEventListener('submit', handleSubmit1);
+  console.log('usernameelement')
+}
 
-  }
-
-
-  function handleSubmit2(e) {
-    e.preventDefault();
-    let expenses = e.target.expenses.value;
-    let cost = e.target.cost.value;
-    console.log(expenses);
-    _addNewExpense(expenses, cost);
-    putUserDataInStorage();
-  }
-    
-  if(expensesList){
-    expensesList.addEventListener('submit', handleSubmit2);
-  }
+function handleSubmit2(e) {
+  e.preventDefault();
+  new Expense(e.target.expenses.value, e.target.cost.value, e.target.per.value);
+  console.log('expenses');
+  renderExpense();
+  putExpenseInStorage();
+}
+  
+if(expensesList){
+  expensesList.addEventListener('submit', handleSubmit2);
+}
 
   // function handleSubmit3(event) {
   //   event.preventDefault();
