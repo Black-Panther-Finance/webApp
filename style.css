@@ -64,6 +64,58 @@ main {
   align-items: center;
 }
 
+.wave {
+  position: absolute;
+  width: 110%;
+  opacity: 0.75;
+  bottom: 0;
+  z-index: -1;
+}
+
+#waveone {
+  animation: oceanMotion 6s linear infinite alternate;
+}
+
+#wavetwo {
+  animation: oceanMotion 5s linear infinite alternate;
+}
+
+@keyframes oceanMotion {
+  0% {
+    transform: translateX(0%) translateY(0%);
+  }
+  10% {
+    transform: translateX(-1%) translateY(2%);
+  }
+  20% {
+    transform: translateX(-2%) translateY(0%);
+  }
+  30% {
+    transform: translateX(-3%) translateY(-2%);
+  }
+  40% {
+    transform: translateX(-2%) translateY(-4%);
+  }
+  50% {
+    transform: translateX(-1%) translateY(-2%);
+  }
+  60% {
+    transform: translateX(0%) translateY(0%);
+  }
+  70% {
+    transform: translateX(1%) translateY(2%);
+  }
+  80% {
+    transform: translateX(2%) translateY(4%);
+  }
+  90% {
+    transform: translateX(3%) translateY(2%);
+  }
+  100% {
+    transform: translateX(1%) translateY(0%);
+  }
+}
+
 /* all the cards are sections */
 section {
   position: relative;
@@ -78,6 +130,7 @@ section {
   align-items: center;
   justify-content: space-between;
   overflow: hidden;
+  background-color: white;
 }
 
 section:hover {
@@ -241,6 +294,7 @@ ul {
 }
 
 #us h2 {
+  z-index: 1;
   font-size: 4em;
   color: blanchedalmond;
   animation: glow 0.75s linear infinite alternate;
@@ -250,7 +304,7 @@ ul {
   position: absolute;
   width: 100%;
   filter: drop-shadow(0px 0px 3px black);
-  z-index: -1;
+  /* z-index: -1; */
   bottom: -10%;
   transition: all 0.25s ease-in-out;
 }
@@ -292,7 +346,7 @@ ul {
 }
 
 #us section:hover .coin {
-  z-index: -1;
+  /* z-index: -1; */
   border-radius: 5px;
   width: 275px;
   height: 150px;
@@ -326,18 +380,19 @@ ul {
   min-height: 130px;
   width: 250px;
   opacity: 1;
+  z-index: 2;
   transition: all 1.5s ease-in-out;
 }
 
 #us section:hover .foreground {
   opacity: 0;
   transform: translateY(-15%);
-  transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in;
 }
 
 #us section:hover .background {
   opacity: 1;
-  transition: all 0.75s ease-in-out;
+  transition: all 0.75s ease-in;
 }
 
 #us section .coin:focus {
