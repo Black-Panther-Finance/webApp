@@ -9,7 +9,7 @@ const expensesList = document.getElementById("form2");
 const desireList = document.getElementById("form3");
 const secElem = document.getElementById('sectionName');
 let expUlElem = document.getElementById('expenseList');
-let desUlElem = document.getElementById('desire');
+let desUlElem = document.getElementById('desireList');
 
 // experimental ----------------------------------------
 
@@ -72,12 +72,15 @@ function renderExpense(){
   }
 }
 
-// UserData.prototype.renderDesire = function(){
-//   let liElem = document.createElement('li');
-//     liElem.textContent = `${this.desireObject} ${this.costOfDesire}`;
-//     desUlElem.appendChild(liElem);
-  
-// }
+function renderDesire() {
+  des UlElem.innerHTML = '';
+  console.log('rendering desire');
+  for (let des of Desire.all) {
+    let liElem = document.createElement('li');
+    liElem.textContent = `${des.name} ${des.cost} acheive by: ${des.date}`;
+      desUlElem.appendChild(liElem);
+  }
+}
 
 //----------------Global Functions----------------//
 
@@ -140,20 +143,20 @@ function getExpensesFromStorage() {
   renderExpense();
 }
 
-// if(desUlElem){getDesireFromStorage(); }
-
-// function getDesireFromStorage() {
-//  let desireInStorage = localStorage.getItem('userDetails');
-//  if(desireInStorage){
-//    let parsedDesire = JSON.parse(desireInStorage);
-//    console.log(parsedDesire);
-//    for(let desire of parsedDesire) {
-//     let newDesire = new UserData(desire.desireObject, desire.costOfDesire );
-//     UserData.allData.push(newDesire);
-//     newDesire.renderDesire();
-//     }
-//   }
-// }
+if(desUlElem){getDesireFromStorage(); }
+  
+function getDesireFromStorage() {
+  console.log("gettin obj from storage");
+ let desireInStorage = localStorage.getItem('desire');
+ if(desireInStorage){
+   let parsedDesire = JSON.parse(desireInStorage);
+   console.log(parsedDesire);
+   for(let desire of parsedDesire) {
+    new Desire(desire.name, desire.cost, desire.date);
+    }
+  }
+  renderDesire();
+}
 
 function putUsernameInStorage(name){
   console.log("I'm putting name in storage");
@@ -167,10 +170,11 @@ function putExpenseInStorage(){
   localStorage.setItem('expense',stringArray);
 }
 
-// function putUsernameInStorage(){
-//   let stringArray = JSON.stringify(Username);
-//   localStorage.setItem('username',stringArray);
-// }
+function putDesireInStorage(){
+  console.log("I'm putting obj in storage" );
+  let stringArray = JSON.stringify(Desire.all);
+  localStorage.setItem('desire',stringArray);
+}
 
 //  }
 
@@ -205,17 +209,17 @@ if(expensesList){
   expensesList.addEventListener('submit', handleSubmit2);
 }
 
-  // function handleSubmit3(event) {
-  //   event.preventDefault();
-  //   let desireObject = event.target.desireObject.value;
-  //   let costOfDesire = event.target.costOfDesire.value;
-  //   _desHandler(desireObject, costOfDesire);
-  //   putUserDataInStorage();
-  // }
+  function handleSubmit3(e) {
+    e.preventDefault();
+    new Desire(e.target.desireObj.value, e.target.costOfDesire.value, e.target.date.value);
+    console.log('desire');
+    renderDesire();
+    putDesireInStorage();
+  }
 
-  // if(desireList != null){
-  //   desireList.addEventListener('submit', handleSubmit3);
-  // }
+  if(desireList != null){
+    desireList.addEventListener('submit', handleSubmit3);
+  }
 
 
 //-------------Call Functions----------------//
