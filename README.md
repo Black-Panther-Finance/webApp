@@ -1,3 +1,29 @@
+## BLACK-PANTHER-FINANCE
+- Savor App is intended to the users who want to track all their frivolous expenses and set the Savings goal. It also lets user set the deadline for the goal to be achieved.
+
+## PROBLEM DOMAIN
+- People save for different reasons (Rent, Mortgage, Car payment)
+- Frivolous Expenses often overlooked
+- Adds up to a good amount and pretty fast
+- Tracking total frivolous expenses
+
+## TESTS
+
+- Used the Chrome built-in Developers Tool
+- Used console.log for debugging
+- Used local storage to verify the stored data
+
+# RESOURCES
+- https://miro.com/app/dashboard/
+- VSCode, Discord, Slack, Remo
+
+
+
+
+
+
+
+
 ## User Stories.
 
 USER STORIES:
