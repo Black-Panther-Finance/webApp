@@ -13,6 +13,7 @@
 html, body {
   height: 100%;
   width: 100%;
+  overflow: hidden;
 }
 
 body {
@@ -61,6 +62,12 @@ header, footer {
   top: 0px;
 }
 
+nav {
+  position: absolute;
+  top: 10%;
+  right: 10%;
+}
+
 #sectionName {
   position: absolute;
   top: 10%;
@@ -74,6 +81,7 @@ main {
   display: flex;
   justify-content: space-evenly;
   align-items: center;
+  overflow: hidden;
 }
 
 .wave {
