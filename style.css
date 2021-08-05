@@ -372,6 +372,7 @@ li button {
   top: 60%;
   opacity: 0;
   padding: 2px;
+  line-height: 20px;
 }
 
 #us p::-webkit-scrollbar {
