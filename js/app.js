@@ -123,8 +123,16 @@ function renderDesire() {
   console.log('rendering desire');
   for (let des of Desire.all) {
     let liElem = document.createElement('li');
+    let deleteBtn = document.createElement('button');
+    deleteBtn.innerText = 'X';
+    deleteBtn.addEventListener('click', () => {
+      liElem.remove();
+      Desire.all.splice(Desire.all.indexOf(des), 1);
+      putDesireInStorage();
+    });
     liElem.textContent = `${des.name} - ${des.cost}$ Save ${des.save}/ day to acheive by: ${des.date}`;
-      desUlElem.appendChild(liElem);
+    desUlElem.appendChild(liElem);
+    liElem.appendChild(deleteBtn);
   }
 }
 
