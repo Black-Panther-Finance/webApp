@@ -21,6 +21,11 @@ header, footer {
   background-color: #fc5755;
   display: flex;
   box-shadow: 0 0 10px black;
+  background: linear-gradient(blanchedalmond,#fc5755 50%);
+}
+
+footer {
+  background: linear-gradient(#fc5755 50%, blanchedalmond);
 }
 
 #logo {
@@ -55,6 +60,14 @@ header, footer {
   position: absolute;
   left: 25px;
   top: 0px;
+}
+
+#sectionName {
+  position: absolute;
+  top: 10%;
+  right: 50%;
+  font-size: 1.25em;
+  /* text-shadow: 0px 0px 2px black; */
 }
 
 main {
@@ -130,7 +143,8 @@ section {
   align-items: center;
   justify-content: space-between;
   overflow: hidden;
-  background-color: white;
+  background-color: rgba(255, 255, 255, 0.637);
+  
 }
 
 section:hover {
@@ -195,6 +209,12 @@ form {
 
 #expensesPage section {
   width: 600px;
+  background: linear-gradient();
+}
+
+#expensesPage h2 {
+  position: absolute;
+  top: 5%;
 }
 
 input {
@@ -236,12 +256,41 @@ input {
 }
 
 ul {
+  position: absolute;
+  top: 40%;
   max-height: 150px;
   min-height: 150px;
   width: 90%;
-  border: 1px solid deepskyblue;
+  padding: 10px;
+  border: 1px solid black;
   overflow-y: scroll;
   border-radius: 10px;
+  background-color: white;
+}
+
+li {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 5px;
+}
+
+li button {
+  border-radius: 10px;
+  border: none;
+  background-color: #fc5755;
+  color: white;
+}
+
+#totalDiv {
+  position: absolute;
+  bottom: 10%;
+}
+
+#expenseTotal {
+  height: 100%;
+  border: 1px solid black;
+  border-radius: 3px;
+  padding: 0 3px;
 }
 
 /* #us is the about us page body */

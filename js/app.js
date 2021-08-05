@@ -4,14 +4,27 @@
 
 //------------------Global Variables-----------------//
 
+const currentDate = new Date();
 const userNameElem = document.getElementById("form1");
 const expensesList = document.getElementById("form2");
 const desireList = document.getElementById("form3");
 const secElem = document.getElementById('sectionName');
+const totalElem = document.getElementById('expenseTotal');
 let expUlElem = document.getElementById('expenseList');
 let desUlElem = document.getElementById('desireList');
 
-// experimental ----------------------------------------
+const one_day = 1000 * 60 * 60 * 24;
+const present_date = new Date();
+  
+// // 0-11 is Month in JavaScript
+// var christmas_day = new Date(present_date.getFullYear(), 11, 25)
+  
+// // To Calculate the result in milliseconds and then converting into days
+// var Result = Math.round(christmas_day.getTime() - present_date.getTime()) / (one_day);
+  
+// // To remove the decimals from the (Result) resulting days value
+// var Final_Result = Result.toFixed(0);
+  
 
 function Username(first, last) {
   this.first = first;
@@ -26,16 +39,39 @@ function Expense(name, cost, per) {
   Expense.all.push(this);
 }
 
-function Desire(name, cost, date) {
+function Desire(name, cost, date, save) {
   this.name = name;
   this.cost = cost;
   this.date = date;
+  this.save = save;
   Desire.all.push(this);
 }
 
 Username.all = [];
 Expense.all = [];
 Desire.all = [];
+
+function expenseTotal() {
+  let total = 0;
+  console.log('expenseTotal')
+  for(let expense of Expense.all) {
+    if (expense.per === 'day') {
+      total += expense.cost * 1;
+    }
+    if (expense.per === 'week') {
+      total += expense.cost * (1/7);
+    }
+    if (expense.per === 'month') {
+      total += expense.cost * (1/30);
+    }
+    if (expense.per === 'year') {
+      total += expense.cost * (1/365);
+    }
+  }
+  total = total.toFixed(2);
+  totalElem.innerText = `${total}$`;
+  return total;
+}
 
 //---------------Constructor Functions------------------//
 
@@ -67,17 +103,27 @@ function renderExpense(){
   console.log("im rendering expenses");
   for (let exp of Expense.all) {
     let liElem = document.createElement('li');
-    liElem.textContent = `${exp.name} ${exp.cost} per ${exp.per}`;
+    let deleteBtn = document.createElement('button');
+    deleteBtn.innerText = 'X';
+    deleteBtn.addEventListener('click', () => {
+      liElem.remove();
+      Expense.all.splice(Expense.all.indexOf(exp), 1);
+      putExpenseInStorage();
+      expenseTotal();
+    });
+    liElem.innerText = `${exp.name} - ${exp.cost}$ per ${exp.per}`;
     expUlElem.appendChild(liElem);
+    liElem.appendChild(deleteBtn);
   }
+  expenseTotal();
 }
 
 function renderDesire() {
-  des UlElem.innerHTML = '';
+  desUlElem.innerHTML = '';
   console.log('rendering desire');
   for (let des of Desire.all) {
     let liElem = document.createElement('li');
-    liElem.textContent = `${des.name} ${des.cost} acheive by: ${des.date}`;
+    liElem.textContent = `${des.name} - ${des.cost}$ Save ${des.save}/ day to acheive by: ${des.date}`;
       desUlElem.appendChild(liElem);
   }
 }
@@ -147,12 +193,15 @@ if(desUlElem){getDesireFromStorage(); }
   
 function getDesireFromStorage() {
   console.log("gettin obj from storage");
- let desireInStorage = localStorage.getItem('desire');
- if(desireInStorage){
-   let parsedDesire = JSON.parse(desireInStorage);
-   console.log(parsedDesire);
-   for(let desire of parsedDesire) {
-    new Desire(desire.name, desire.cost, desire.date);
+  let desireInStorage = localStorage.getItem('desire');
+  if(desireInStorage){
+    let parsedDesire = JSON.parse(desireInStorage);
+    for(let desire of parsedDesire) {
+      let theDate = desire.date.split('-');
+      theDate = new Date(theDate[0], theDate[1], theDate[2]);
+      let result = (Math.round(theDate.getTime() - present_date.getTime()) / (one_day)).toFixed(0);
+      let save = (desire.cost / result).toFixed(2);
+      new Desire(desire.name, desire.cost, desire.date, save);
     }
   }
   renderDesire();
@@ -203,6 +252,7 @@ function handleSubmit2(e) {
   console.log('expenses');
   renderExpense();
   putExpenseInStorage();
+  expensesList.reset();
 }
   
 if(expensesList){
@@ -215,6 +265,7 @@ if(expensesList){
     console.log('desire');
     renderDesire();
     putDesireInStorage();
+    desireList.reset();
   }
 
   if(desireList != null){
