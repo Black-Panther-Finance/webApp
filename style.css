@@ -15,17 +15,16 @@ html, body {
   width: 100%;
 }
 
+body {
+  background: linear-gradient(#3dacfc9c 15%, blanchedalmond , #fc5755 70%);
+}
+
 header, footer {
   height: 15%;
   width: 100%;
-  background-color: #fc5755;
+  background-color: #fc5855;
   display: flex;
   box-shadow: 0 0 10px black;
-  background: linear-gradient(blanchedalmond,#fc5755 50%);
-}
-
-footer {
-  background: linear-gradient(#fc5755 50%, blanchedalmond);
 }
 
 #logo {
