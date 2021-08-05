@@ -209,6 +209,7 @@ function getDesireFromStorage() {
       theDate = new Date(theDate[0], theDate[1], theDate[2]);
       let result = (Math.round(theDate.getTime() - present_date.getTime()) / (one_day)).toFixed(0);
       let save = (desire.cost / result).toFixed(2);
+      console.log('save', save, theDate);
       new Desire(desire.name, desire.cost, desire.date, save);
     }
   }
@@ -269,10 +270,14 @@ if(expensesList){
 
   function handleSubmit3(e) {
     e.preventDefault();
-    new Desire(e.target.desireObj.value, e.target.costOfDesire.value, e.target.date.value);
+    let theDate = e.target.date.value.split('-');
+    theDate = new Date(theDate[0], theDate[1], theDate[2]);
+    let result = (Math.round(theDate.getTime() - present_date.getTime()) / (one_day)).toFixed(0);
+    let save = (e.target.costOfDesire.value / result).toFixed(2);
+    new Desire(e.target.desireObj.value, e.target.costOfDesire.value, e.target.date.value, save);
     console.log('desire');
-    renderDesire();
     putDesireInStorage();
+    renderDesire();
     desireList.reset();
   }
 

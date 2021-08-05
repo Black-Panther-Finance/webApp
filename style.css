@@ -68,6 +68,10 @@ nav {
   right: 10%;
 }
 
+nav button {
+  mix-blend-mode: screen;
+}
+
 #sectionName {
   position: absolute;
   top: 10%;
@@ -144,7 +148,7 @@ section {
   border-radius: 15px;
   box-shadow: 0 0 5px black, inset 0 0 1px black;
   padding: 25px;
-  transition: transform 0.2s ease-in-out,  box-shadow 0.2s ease-in-out;
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -515,5 +519,5 @@ footer h4 {
 
 #sectionName {
   color: black;
-  position: absolute;
+  /* position: absolute; */
 }
