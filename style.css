@@ -7,7 +7,6 @@
 *::before,
 *::after {
   box-sizing: border-box;
-  /* border: 1px solid deeppink; */
 }
 
 html, body {
@@ -77,7 +76,6 @@ nav button {
   top: 10%;
   right: 50%;
   font-size: 1.25em;
-  /* text-shadow: 0px 0px 2px black; */
 }
 
 main {
@@ -155,7 +153,6 @@ section {
   justify-content: space-between;
   overflow: hidden;
   background-color: rgba(255, 255, 255, 0.637);
-  
 }
 
 section:hover {
@@ -198,6 +195,30 @@ form {
   z-index: 1;
   text-shadow: 1px 2px 0 #cb7407;
   transition: all 0.2s ease-in-out;
+  animation: coinClick 0.5s ease;
+}
+
+@keyframes coinClick {
+  0% {
+    transform: scale(0.8);
+  }
+  25% {
+    transform: scale(1.075);
+  }
+  50% {
+    transform: scale(0.9);
+  }
+  75% {
+    transform: scale(1.025);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* ----- resetting the animation ------ */
+.coin:active {
+  animation: none;
 }
 
 .coin::before {
@@ -216,6 +237,30 @@ form {
   border-top: 4px solid #d57e08;
   z-index: -1;
   transition: all 0.2s ease-in-out
+}
+
+.coin::after {
+  content: '';
+  position: absolute;
+  width: 110%;
+  height: 110%;
+  top: -5%;
+  left: -5%;
+  border-radius: 50%;
+  z-index: 2;
+}
+
+.coin:hover::after {
+  animation: soShiny 0.5s ease-in-out infinite alternate;
+}
+
+@keyframes soShiny {
+  0% {
+    box-shadow: 0 0 15px 0px #ffd84c;
+  }
+  100% {
+    box-shadow: 0 0 15px 10px #ffd84c;
+  }
 }
 
 #expensesPage section {
@@ -308,48 +353,9 @@ li button {
   font-family: moon;
 }
 
-.coin:hover {
-  transform: scale(1.1);
-  transition: all 0.2s ease-in-out;
-  animation: soShiny 0.5s ease-in-out infinite alternate;
-}
-
-@keyframes soShiny {
-  0% {
-    box-shadow: 0 0 15px #ffd84c;
-  }
-  100% {
-    box-shadow: 0 0 15px 10px #ffd84c;
-  }
-}
-
-/* .coin:focus {
-  animation: coinClick 0.5s ease;
-} */
-
-@keyframes coinClick {
-  0% {
-    transform: scale(0.8);
-  }
-  25% {
-    transform: scale(1.075);
-  }
-  50% {
-    transform: scale(0.9);
-  }
-  75% {
-    transform: scale(1.025);
-  }
-  100% {
-    transform: scale(1);
-  }
-}
-
 #us section {
   justify-content: flex-start;
   padding: 1% 2% 10% 2%;
-  /* width: 23%;
-  height: 50%; */
 }
 
 #us h2 {
@@ -363,7 +369,6 @@ li button {
   position: absolute;
   width: 100%;
   filter: drop-shadow(0px 0px 3px black);
-  /* z-index: -1; */
   bottom: -10%;
   transition: all 0.25s ease-in-out;
 }
@@ -392,6 +397,7 @@ li button {
 
 #us p::-webkit-scrollbar-track {
   box-shadow: inset 0 0 3px black;
+  border-radius: 10px;
 }
  
 #us p::-webkit-scrollbar-thumb {
@@ -406,7 +412,6 @@ li button {
 }
 
 #us section:hover .coin {
-  /* z-index: -1; */
   border-radius: 5px;
   width: 275px;
   height: 150px;
@@ -435,6 +440,10 @@ li button {
   opacity: 0.75;
 }
 
+#us section:hover .coin::after {
+  content: unset;
+}
+
 #us section:hover p {
   position: absolute;
   min-height: 130px;
@@ -455,9 +464,9 @@ li button {
   transition: all 0.75s ease-in;
 }
 
-#us section .coin:focus {
+/* #us section .coin:focus {
   transform: rotateY(90deg);
-}
+} */
 
 #abdi img {
   width: unset;
@@ -471,37 +480,6 @@ li button {
   left: 0;
   bottom: 0;
 }
-
-/* @keyframes coinMove {
-  0% {
-    transform: translateY(0px) rotateY(0deg);
-  }
-  25% {
-    transform: translateY(10px) rotateY(0deg);
-  }
-  50% {
-    transform: translateY(-20px) rotateY(0deg);
-  }
-  75% {
-    transform: translateY(-40px) rotateY(0deg);
-  }
-  100% {
-    transform: translateY(-280px) rotateY(0deg);
-  }
-} */
-
-/* .coin::after {
-  content: '';
-  position: absolute;
-  height: 50px;
-  width: 50px;
-  margin: 7px;
-  top: 0;
-  left: 20px;
-  border-radius: 50%;
-  background-color: #ffbd0b;
-  z-index: 2;
-} */
 
 section #fineprint {
   font-size: 0.5em;
@@ -519,5 +497,6 @@ footer h4 {
 
 #sectionName {
   color: black;
-  /* position: absolute; */
+  position: absolute;
+  right: 50%;
 }

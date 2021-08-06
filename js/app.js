@@ -1,7 +1,5 @@
 'use strict';
 
-
-
 //------------------Global Variables-----------------//
 
 const currentDate = new Date();
@@ -10,21 +8,12 @@ const expensesList = document.getElementById("form2");
 const desireList = document.getElementById("form3");
 const secElem = document.getElementById('sectionName');
 const totalElem = document.getElementById('expenseTotal');
+const coins = document.getElementsByClassName('coin');
 let expUlElem = document.getElementById('expenseList');
 let desUlElem = document.getElementById('desireList');
 
 const one_day = 1000 * 60 * 60 * 24;
 const present_date = new Date();
-  
-// // 0-11 is Month in JavaScript
-// var christmas_day = new Date(present_date.getFullYear(), 11, 25)
-  
-// // To Calculate the result in milliseconds and then converting into days
-// var Result = Math.round(christmas_day.getTime() - present_date.getTime()) / (one_day);
-  
-// // To remove the decimals from the (Result) resulting days value
-// var Final_Result = Result.toFixed(0);
-  
 
 function Username(first, last) {
   this.first = first;
@@ -73,24 +62,6 @@ function expenseTotal() {
   return total;
 }
 
-//---------------Constructor Functions------------------//
-
-// 1) make total for expenses!!!!
-// 2) edit expenses? - s
-
-// function UserData(firstName = '', lastName = '', expenses, cost, desireObject, costOfDesire, timeOfFullFillment) {
-//    this.firstName = firstName;
-//    this.lastName = lastName;
-//    this.expenses = expenses;
-//    this.cost = cost;
-//    this.desireObject = desireObject;
-//    this.costOfDesire = costOfDesire;
-//    this.timeOfFullFillment = timeOfFullFillment;
-
-// }
-
-// UserData.allData = []; 
-
 function renderName(name) {
   let h3Elem = document.createElement('h3')
   h3Elem.textContent = `Hi ${name.first} ${name.last}`;
@@ -137,33 +108,6 @@ function renderDesire() {
 }
 
 //----------------Global Functions----------------//
-
-// function _nameHandler(firstName, lastName) {
-//   console.log(firstName, lastName);
-//   let newName = new UserData(firstName,lastName); 
-//   UserData.allData.push(newName);
-//   // newName.renderName(); 
-// }
-
-// function _addNewExpense(expenses,cost) {
-//   let newExpense = new UserData(expenses,cost); 
-//   console.log(newExpense);
-//     UserData.allData.push(newExpense);
-//     newExpense.renderExpense();
-// }
-  
-
-  // function _desHandler(desireObject, costOfDesire) {
-  //   console.log(desireObject, costOfDesire);
-  //   let newDesire = new UserData(desireObject, costOfDesire); 
-  //   UserData.allData.push(newDesire);
-  //   // newName.renderName(); 
-  // }
-
-// handel setting storage before going to the next page.
-//    let stringArray = JSON.stringify();
-//    localStorage.setItem('userDetails',stringArray);
-//   }else 
 
 if(secElem){getnameFromStorage(); }
 
@@ -234,58 +178,44 @@ function putDesireInStorage(){
   localStorage.setItem('desire',stringArray);
 }
 
-//  }
-
-//---------------Rendering Header/Body/Footer---------//
-
-
-
 //--------------Event Listeners------------------//
+
+
 function handleSubmit1(e) {
   e.preventDefault();
   let name = new Username(e.target.firstName.value, e.target.lastName.value);
-  // Username.first = e.target.firstName.value;
-  // Username.last = e.target.lastName.value;
   putUsernameInStorage(name);
   window.location = 'expenses.html';
 }
 
 if(userNameElem){
   userNameElem.addEventListener('submit', handleSubmit1);
-  console.log('usernameelement')
 }
 
 function handleSubmit2(e) {
   e.preventDefault();
   new Expense(e.target.expenses.value, e.target.cost.value, e.target.per.value);
-  console.log('expenses');
   renderExpense();
   putExpenseInStorage();
   expensesList.reset();
 }
-  
+
 if(expensesList){
   expensesList.addEventListener('submit', handleSubmit2);
 }
 
-  function handleSubmit3(e) {
-    e.preventDefault();
-    let theDate = e.target.date.value.split('-');
-    theDate = new Date(theDate[0], theDate[1], theDate[2]);
-    let result = (Math.round(theDate.getTime() - present_date.getTime()) / (one_day)).toFixed(0);
-    let save = (e.target.costOfDesire.value / result).toFixed(2);
-    new Desire(e.target.desireObj.value, e.target.costOfDesire.value, e.target.date.value, save);
-    console.log('desire');
-    putDesireInStorage();
-    renderDesire();
-    desireList.reset();
-  }
+function handleSubmit3(e) {
+  e.preventDefault();
+  let theDate = e.target.date.value.split('-');
+  theDate = new Date(theDate[0], theDate[1], theDate[2]);
+  let result = (Math.round(theDate.getTime() - present_date.getTime()) / (one_day)).toFixed(0) -30;
+  let save = (e.target.costOfDesire.value / result).toFixed(2);
+  new Desire(e.target.desireObj.value, e.target.costOfDesire.value, e.target.date.value, save);
+  putDesireInStorage();
+  renderDesire();
+  desireList.reset();
+}
 
-  if(desireList != null){
-    desireList.addEventListener('submit', handleSubmit3);
-  }
-
-
-//-------------Call Functions----------------//
-
-// getnameFromStorage();
+if(desireList != null){
+  desireList.addEventListener('submit', handleSubmit3);
+}
