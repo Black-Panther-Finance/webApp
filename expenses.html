@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="reset.css">
+  <link rel="stylesheet" href="style.css">
+  <title>Savor Expenses</title>
+</head>
+<body id="expensesPage">
+  <header>
+    <div id="logo">
+      <h1>Savor</h1>
+      <img src="img/savor.png">
+    </div>
+    <nav>
+      <a id="Home" href="index.html"><button>Home</button></a>
+      <!-- <a id="Desires" href="goals.html"><button>Desires</button></a> -->
+      <a id="About Us" href="aboutus.html"><button>Us</button></a>
+    </nav>
+    <div id="sectionName"></div>
+  </header>
+  <main>
+    <img id="waveone" class="wave" src="img/waveone.png">
+    <img id="wavetwo" class="wave" src="img/wavetwo.png">
+    <section id="expenses">
+      <h2>Expenses</h2>
+      <form id="form2">
+        <input id="expenseName" type="text" placeholder="Frivolous Expense eg. coffee, alcohol" name="expenses">
+        <input id="expenseCost" type="text" placeholder="$" name="cost">
+        <button id="addExpense" class="coin">+</button>
+        <span id="fwdslsh">/</span>
+        <select id="per" name="per">
+          <option id="day">day</option>
+          <option id="week">week</option>
+          <option id="month">month</option>
+          <option id="year">year</option>
+        </select>
+      </form>
+      <ul id="expenseList">
+      </ul>
+      <div id="totalDiv">Total Per Day <span id="expenseTotal"></span></div>
+    </section>
+    <section id="desire">
+      <h2>What is it you desire?</h2>
+      <form id="form3">
+        <input id="desireName" type="text" placeholder="Desire" name="desireObj">
+        <input id="desireCost" type="text" placeholder="$" name="costOfDesire">
+        <input id="desireDate" type="date" placeholder="date" name="date">
+        <!-- <label for="desireImg">Upload image for the object of your desire</label>
+        <input type="file" name="desireImg" accept="img/*"> -->
+        <button id="addDesire" class="coin">+</button>
+      </form>
+      <ul id="desireList">
+
+      </ul>
+    </section>
+  </main>
+  <footer>
+    <h4>BLACK PANTHER FINANCE &copy; 2021</h4>
+  </footer>
+  <script src="./js/app.js"></script>
+</body>
+</html>

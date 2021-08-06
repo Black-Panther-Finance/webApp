@@ -1,0 +1,502 @@
+@font-face {
+  src: url(fonts/MoonTime-Regular.ttf);
+  font-family: moon;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+body {
+  background: linear-gradient(#3dacfc9c 15%, blanchedalmond , #fc5855ad 70%);
+}
+
+header, footer {
+  height: 15%;
+  width: 100%;
+  background-color: #fc5855;
+  display: flex;
+  box-shadow: 0 0 10px black;
+}
+
+#logo {
+  position: relative;
+  height: 100%;
+  width: 300px;
+  font-family: moon;
+  font-size: 10em;
+  display: flex;
+  color: blanchedalmond;
+  animation: glow 1s linear infinite alternate;
+  margin: 10px;
+}
+
+@keyframes glow {
+  0% {
+    text-shadow: 0 0 1px blanchedalmond, 1px 1px 2px black;
+  }
+  100% {
+    text-shadow: 0 0 15px blanchedalmond, 1px 1px 2px black;
+  }
+}
+
+#logo h1 {
+  z-index: 1;
+  margin-left: 50px;
+}
+
+#logo img {
+  height: 150px;
+  width: 150px;
+  position: absolute;
+  left: 25px;
+  top: 0px;
+}
+
+nav {
+  position: absolute;
+  top: 10%;
+  right: 10%;
+}
+
+nav button {
+  mix-blend-mode: screen;
+}
+
+#sectionName {
+  position: absolute;
+  top: 10%;
+  right: 50%;
+  font-size: 1.25em;
+}
+
+main {
+  height: 70%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  overflow: hidden;
+}
+
+.wave {
+  position: absolute;
+  width: 110%;
+  opacity: 0.75;
+  bottom: 0;
+  z-index: -1;
+}
+
+#waveone {
+  animation: oceanMotion 6s linear infinite alternate;
+}
+
+#wavetwo {
+  animation: oceanMotion 5s linear infinite alternate;
+}
+
+@keyframes oceanMotion {
+  0% {
+    transform: translateX(0%) translateY(0%);
+  }
+  10% {
+    transform: translateX(-1%) translateY(2%);
+  }
+  20% {
+    transform: translateX(-2%) translateY(0%);
+  }
+  30% {
+    transform: translateX(-3%) translateY(-2%);
+  }
+  40% {
+    transform: translateX(-2%) translateY(-4%);
+  }
+  50% {
+    transform: translateX(-1%) translateY(-2%);
+  }
+  60% {
+    transform: translateX(0%) translateY(0%);
+  }
+  70% {
+    transform: translateX(1%) translateY(2%);
+  }
+  80% {
+    transform: translateX(2%) translateY(4%);
+  }
+  90% {
+    transform: translateX(3%) translateY(2%);
+  }
+  100% {
+    transform: translateX(1%) translateY(0%);
+  }
+}
+
+/* all the cards are sections */
+section {
+  position: relative;
+  height: 400px;
+  width: 300px;
+  border-radius: 15px;
+  box-shadow: 0 0 5px black, inset 0 0 1px black;
+  padding: 25px;
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  overflow: hidden;
+  background-color: rgba(255, 255, 255, 0.637);
+}
+
+section:hover {
+  /* transform: scale(1.05); */
+  transition: all 0.2s ease-in-out;
+  box-shadow: 0 5px 10px black;
+}
+
+section h2 {
+  font-family: moon;
+  width: 100%;
+  font-size: 1.75em;
+  font-weight: bolder;
+  text-align: center;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  height: 33%;
+}
+
+/* gold coin buttons */
+.coin {
+  background-color: #ffbd0b;
+  border-radius: 50%;
+  position: absolute;
+  bottom: 10%;
+  height: 70px;
+  width: 70px;
+  border-top: 4px solid #ffd84c;
+  border-left: 4px solid #ffd84c;
+  border-right: 4px solid #d57e08;
+  border-bottom: 4px solid #d57e08;
+  font-weight: bolder;
+  font-size: 2em;
+  color: #ffbd0b;
+  z-index: 1;
+  text-shadow: 1px 2px 0 #cb7407;
+  transition: all 0.2s ease-in-out;
+  animation: coinClick 0.5s ease;
+}
+
+@keyframes coinClick {
+  0% {
+    transform: scale(0.8);
+  }
+  25% {
+    transform: scale(1.075);
+  }
+  50% {
+    transform: scale(0.9);
+  }
+  75% {
+    transform: scale(1.025);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* ----- resetting the animation ------ */
+.coin:active {
+  animation: none;
+}
+
+.coin::before {
+  content: '';
+  position: absolute;
+  width: 70%;
+  height: 70%;
+  top: 0;
+  left: 0;
+  transform: translateX(22%) translateY(22%);
+  background: #f0a608;
+  border-radius: 50%;
+  border-bottom: 4px solid #ffd84c;
+  border-right: 4px solid #ffd84c;
+  border-left: 4px solid #d57e08;
+  border-top: 4px solid #d57e08;
+  z-index: -1;
+  transition: all 0.2s ease-in-out
+}
+
+.coin::after {
+  content: '';
+  position: absolute;
+  width: 110%;
+  height: 110%;
+  top: -5%;
+  left: -5%;
+  border-radius: 50%;
+  z-index: 2;
+}
+
+.coin:hover::after {
+  animation: soShiny 0.5s ease-in-out infinite alternate;
+}
+
+@keyframes soShiny {
+  0% {
+    box-shadow: 0 0 15px 0px #ffd84c;
+  }
+  100% {
+    box-shadow: 0 0 15px 10px #ffd84c;
+  }
+}
+
+#expensesPage section {
+  width: 600px;
+}
+
+#expensesPage h2 {
+  position: absolute;
+  top: 5%;
+}
+
+input {
+  height: 3em;
+}
+
+#expensesPage .coin {
+  right: -30%;
+  bottom: 55%;
+}
+
+#expensesPage form {
+  position: absolute;
+  flex-flow: row wrap;
+  align-items: baseline;
+  width: 65%;
+  top: 20%;
+  left: 5%;
+}
+
+#expenseName {
+  width: 200px;
+}
+
+#expenseCost {
+  width: 50px;
+}
+
+#desireName {
+  width: 175px;
+}
+
+#desireCost {
+  width: 50px;
+}
+
+#desireDate {
+  width: 140px;
+}
+
+ul {
+  position: absolute;
+  top: 40%;
+  max-height: 150px;
+  min-height: 150px;
+  width: 90%;
+  padding: 10px;
+  border: 1px solid black;
+  overflow-y: scroll;
+  border-radius: 10px;
+  background-color: white;
+}
+
+li {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 5px;
+}
+
+li button {
+  border-radius: 10px;
+  border: none;
+  background-color: #fc5755;
+  color: white;
+}
+
+#totalDiv {
+  position: absolute;
+  bottom: 10%;
+}
+
+#expenseTotal {
+  height: 100%;
+  border: 1px solid black;
+  border-radius: 3px;
+  padding: 0 3px;
+}
+
+/* #us is the about us page body */
+#us .coin {
+  font-family: moon;
+}
+
+#us section {
+  justify-content: flex-start;
+  padding: 1% 2% 10% 2%;
+}
+
+#us h2 {
+  z-index: 1;
+  font-size: 4em;
+  color: blanchedalmond;
+  animation: glow 0.75s linear infinite alternate;
+}
+
+#us section img {
+  position: absolute;
+  width: 100%;
+  filter: drop-shadow(0px 0px 3px black);
+  bottom: -10%;
+  transition: all 0.25s ease-in-out;
+}
+
+.background {
+  opacity: 0;
+  top: 0;
+  bottom: unset;
+}
+
+#us p {
+  position: absolute;
+  max-height: 10%;
+  overflow-y: scroll;
+  width: 0px;
+  height: 0px;
+  top: 60%;
+  opacity: 0;
+  padding: 2px;
+  line-height: 20px;
+}
+
+#us p::-webkit-scrollbar {
+  width: 0.5em;
+}
+
+#us p::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 3px black;
+  border-radius: 10px;
+}
+ 
+#us p::-webkit-scrollbar-thumb {
+  background-color: #fc5855;
+  border-radius: 10px;
+  box-shadow: inset 0 0 3px black;
+}
+
+#us section:hover h2 {
+  transform: scale(1.2);
+  transition: all 0.5s ease-in-out;
+}
+
+#us section:hover .coin {
+  border-radius: 5px;
+  width: 275px;
+  height: 150px;
+  bottom: 5%;
+  background-color: white;
+  transition: all 0.75s ease-in-out;
+  animation: coinMove 1s linear forwards;
+  border-top: 2px solid #ffd84c;
+  border-left: 2px solid #ffd84c;
+  border-right: 2px solid #d57e08;
+  border-bottom: 2px solid #d57e08;
+  opacity: 0.75;
+}
+
+#us section:hover .coin:before {
+  border-radius: 5px;
+  width: 100%;
+  height: 100%;
+  transform: translateX(0%) translateY(0%);
+  background-color: transparent;
+  transition: all 0.75s ease-in-out;
+  border-bottom: 2px solid #ffd84c;
+  border-right: 2px solid #ffd84c;
+  border-left: 2px solid #d57e08;
+  border-top: 2px solid #d57e08;
+  opacity: 0.75;
+}
+
+#us section:hover .coin::after {
+  content: unset;
+}
+
+#us section:hover p {
+  position: absolute;
+  min-height: 130px;
+  width: 250px;
+  opacity: 1;
+  z-index: 2;
+  transition: all 1.5s ease-in-out;
+}
+
+#us section:hover .foreground {
+  opacity: 0;
+  transform: translateY(-15%);
+  transition: all 0.5s ease-in;
+}
+
+#us section:hover .background {
+  opacity: 1;
+  transition: all 0.75s ease-in;
+}
+
+/* #us section .coin:focus {
+  transform: rotateY(90deg);
+} */
+
+#abdi img {
+  width: unset;
+  height: 100%;
+}
+
+#brandon .background {
+  width: unset;
+  height: 140%;
+  top: unset;
+  left: 0;
+  bottom: 0;
+}
+
+section #fineprint {
+  font-size: 0.5em;
+  margin-top: 50px;
+}
+
+footer {
+  align-items: flex-end;
+  justify-content: flex-end;
+}
+
+footer h4 {
+  margin: 10px;
+}
+
+#sectionName {
+  color: black;
+  position: absolute;
+  right: 50%;
+}
